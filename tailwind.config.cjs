@@ -18,20 +18,19 @@ module.exports = {
   plugins: [
     plugin(function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
-        section: {
-          "@apply flex flex-col justify-center items-center gap-md text-center":
-            {},
-        },
         h2: {
           "@apply text-7xl font-bold text-primary": {},
         },
       });
       addComponents({
-        ".vstack": {
+        ".section": {
           display: "flex",
           flexDirection: "column",
-          gap: theme("spacing.sm"),
+          gap: theme("spacing.md"),
           alignItems: "center",
+        },
+        ".center": {
+          "@apply text-center place-items-center": {},
         },
         ".btn-base": {
           "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit":
