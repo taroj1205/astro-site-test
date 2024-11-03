@@ -1,0 +1,45 @@
+name: Upload to bunny
+ 
+on:
+  workflow_dispatch:
+  push: 
+   branches:
+     - main
+ 
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.22.3]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: get pnpm
+        run: npm i -g pnpm
+
+      - name: dependencies
+        run: pnpm install
+
+      - name: buld
+        run: pnpm run build
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: List Directory Contents 
+        run: ls
+      - name: Change Directory and Run Go File 
+        run: |
+          cd upload 
+          go run main.go ${{ secrets.STORAGE_PASSWORD }} ${{ secrets.STORAGE_NAME }}
+          
