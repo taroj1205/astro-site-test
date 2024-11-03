@@ -16,7 +16,7 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function ({ addBase, addComponents, addUtilities, theme }) {
+    plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         h2: {
           "@apply text-7xl font-bold text-primary": {},
