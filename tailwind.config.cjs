@@ -3,6 +3,15 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
+    containr: {
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+        "2xl": "6rem",
+      },
+    },
     extend: {
       colors: {
         primary: "hsl(258, 48%, 23%)",
@@ -33,7 +42,7 @@ module.exports = {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit":
+          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2":
             {},
         },
       });
