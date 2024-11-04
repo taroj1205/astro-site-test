@@ -1,20 +1,25 @@
 ---
+import LanguageIcon from "./icons/language-icon.astro";
 import Navbar from "./navbar.astro";
 ---
 
 <header>
-  <img
-    alt="Zen Logo"
-    loading="lazy"
-    width="40"
-    height="40"
-    decoding="async"
-    data-nimg="1"
-    class="transition-all duration-300 hover:scale-110 mr-2"
-    style="color:transparent"
-    srcset="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg 1x, https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg 2x"
-    src="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg"
-  />
   <Navbar />
-  <p>Download button gonna be here</p>
+  <section>
+    <LanguageIcon class="h-6 w-6 text-primary" />
+    <a href="/download" class="btn-base py-2 px-4">Download Zen</a>
+  </section>
 </header>
+
+<style>
+  @tailwind base;
+  @layer base {
+    header {
+      @apply flex w-full items-center justify-between pt-lg;
+    }
+
+    section {
+      @apply flex items-center gap-4;
+    }
+  }
+</style>
