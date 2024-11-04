@@ -14,7 +14,6 @@ module.exports = {
         "2xl": "6rem",
       },
     },
-
     extend: {
       colors: {
         primary: "hsl(258, 48%, 23%)",
@@ -66,6 +65,7 @@ module.exports = {
           flexDirection: "column",
           gap: theme("spacing.md"),
           alignItems: "center",
+          textAlign: "center",
         },
         ".center": {
           "@apply text-center place-items-center": {},
