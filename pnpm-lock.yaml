@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/dm-sans':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource/inter':
+        specifier: ^5.1.0
+        version: 5.1.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -311,6 +317,12 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fontsource/dm-sans@5.1.0':
+    resolution: {integrity: sha512-YpGtZ8Rbh+/84rn7o/rzBBFnikoLjhjtzKYAMZhSRr7xWU0piZDBFhUdI14M4Ub8emh0TSG/gU2pJOMUe9TGYA==}
+
+  '@fontsource/inter@5.1.0':
+    resolution: {integrity: sha512-zKZR3kf1G0noIes1frLfOHP5EXVVm0M7sV/l9f/AaYf+M/DId35FO4LkigWjqWYjTJZGgplhdv4cB+ssvCqr5A==}
 
   '@jridgewell/gen-mapping@0.3.5':
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
@@ -2094,6 +2106,10 @@ snapshots:
     optional: true
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fontsource/dm-sans@5.1.0': {}
+
+  '@fontsource/inter@5.1.0': {}
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
