@@ -71,7 +71,7 @@ module.exports = {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-2xl transition-all duration-300":
+          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300":
             {},
         },
       });
