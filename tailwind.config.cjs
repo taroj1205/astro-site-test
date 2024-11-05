@@ -16,10 +16,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "hsl(258, 48%, 23%)",
-        "primary-dark": "hsl(258, 48%, 65%)",
-        muted: "hsl(258, 48%, 55%)",
-        "muted-dark": "hsl(258, 48%, 85%)",
+        primary: "hsl(22, 96%, 60%)",
+        muted: "hsl(22, 96%, 70%)",
       },
       spacing: {
         xs: "0.5rem",
@@ -54,8 +52,8 @@ module.exports = {
       },
       dropShadow: {
         glow: [
-          "0 0px 5px hsla(258, 48%, 23%, 0.90)",
-          "0 0px 20px hsla(258, 48%, 23%, 0.75)"
+          "0 0px 5px hsla(22, 96%, 60%, 0.90)",
+          "0 0px 20px hsla(22, 96%, 60%, 0.75)"
         ]
       }
     },
@@ -64,7 +62,7 @@ module.exports = {
     plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         h2: {
-          "@apply text-scale-large font-bold text-primary dark:text-primary-dark": {},
+          "@apply text-scale-large font-bold text-primary": {},
 
         },
       });

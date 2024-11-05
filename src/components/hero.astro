@@ -3,22 +3,26 @@ import DownloadIcon from "./icons/download-icon.astro";
 import '@fontsource/dm-sans/700.css';
 ---
 
-<section id="hero" class="section">
-  <h2 class="md:text-center">Stay focused, browse faster</h2>
-  <p class="max-w-prose md:text-center text-xl text-muted dark:text-muted-dark">
-    Zen is beautifully designed, privacy-focused, and packed with features. We
-    care about your experience, not your data.
-  </p>
-  <div class="center flex flex-col gap-sm">
-    <a href="/download" class="btn-base"> <DownloadIcon /> Download Zen</a>
-    <p class="text-md text-muted/95">Available on Windows, Mac, and Linux</p>
+<section id="hero" class="section flex flex-col md:flex-row gap-md items-center">
+  <div class="flex-1 md:max-w-1/2 flex flex-col gap-4">
+    <h2 class="md:text-center drop-shadow-md">Stay focused, browse faster</h2>
+    <p class="max-w-prose md:text-center text-xl text-muted drop-shadow-sm">
+      Zen is beautifully designed, privacy-focused, and packed with features. We
+      care about your experience, not your data.
+    </p>
+    <div class="center flex flex-col gap-sm">
+      <a href="/download" class="btn-base"> <DownloadIcon /> Download Zen</a>
+      <p class="text-md text-muted/95">Available on Windows, Mac, and Linux</p>
+    </div>
   </div>
-    <img
-      src="https://media.discordapp.net/attachments/1302812062019358742/1302846711768678470/Default_Mode2.png?ex=67299a0d&is=6728488d&hm=6a9275e98149351b8415f76cf756d94c726b67beeefb59bbdab516e3a0c91203&=&format=webp&quality=lossless&width=1081&height=699"
-      alt="Zen Logo"
-      class="w-full rounded-lg drop-shadow-glow"
-    />
-    <figcaption class="text-md text-muted/95">
-      Your experience using Zen may change over time, as new features are added, improved and adjusted with upstream Firefox updates. User discretion is advised.
-    </figcaption>
+    <div class="flex-1 md:max-w-1/2 flex flex-col gap-4">
+      <img
+        src="https://media.discordapp.net/attachments/1302812062019358742/1302846711768678470/Default_Mode2.png?ex=67299a0d&is=6728488d&hm=6a9275e98149351b8415f76cf756d94c726b67beeefb59bbdab516e3a0c91203&=&format=webp&quality=lossless&width=1081&height=699"
+        alt="Zen Logo"
+        class="w-full rounded-lg drop-shadow-glow"
+      />
+      <figcaption class="text-md text-muted/95">
+        Your experience using Zen may change over time, as new features are added, improved and adjusted with upstream Firefox updates. User discretion is advised.
+      </figcaption>
+    </div>
 </section>

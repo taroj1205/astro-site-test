@@ -1,14 +1,18 @@
 <nav>
-  <img
-    alt="Zen Logo"
-    loading="lazy"
-    width="40"
-    height="40"
-    decoding="async"
-    data-nimg="1"
-    srcset="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg 1x, https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg 2x"
-    src="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-black.svg"
-  />
+  <a
+    href="/"  
+  >
+    <img
+      alt="Zen Logo"
+      loading="lazy"
+      width="40"
+      height="40"
+      decoding="async"
+      data-nimg="1"
+      srcset="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg 1x, https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg 2x"
+      src="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg"
+    />
+  </a>
   <ul>
     <li><a href="/">Browser</a></li>
     <li><a href="https://docs.zen-browser.app/">Resources</a></li>
@@ -23,10 +27,10 @@
   @tailwind base;
   @layer base {
     nav {
-      @apply flex justify-center gap-10 text-primary font-semibold text-lg dark:text-primary-dark;
+      @apply flex justify-center gap-10 text-primary font-semibold text-lg;
     }
     ul {
-      @apply hidden items-center justify-center gap-10 md:flex;
+      @apply hidden items-center justify-center gap-10 md:flex drop-shadow-md;
     }
   }
 </style>
