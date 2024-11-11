@@ -81,7 +81,7 @@ import { links } from "./data";
                   target="_blank"
                   rel="noopener noreferrer"
                   href={href}
-                  class="text-secondary hover:underline"
+                  class="w-fit text-secondary hover:underline"
                 >
                   {title}
                 </a>
@@ -89,17 +89,22 @@ import { links } from "./data";
             </div>
           ))
         }
-        <div class="place-self-end lg:justify-self-start">
-          <Download class="whitespace-nowrap bg-black/80 py-2 text-sm"
-            >Download Zen <span class="text-xs text-primary">alpha</span
-            ></Download
-          >
-        </div>
       </section>
     </div>
     <hr class="border-t-1 border-black" />
-    <p class="py-8 text-center text-lg text-secondary">
-      © 2024 Zen Browser. All rights reserved.
-    </p>
+    <section
+      class="-lg:flex-col flex items-center justify-between gap-6 px-4 py-8"
+    >
+      <p class="-lg:order-2 w-fit text-center text-lg text-secondary">
+        © 2024 Zen Browser. All rights reserved.
+      </p>
+
+      <div class="-lg:order-1 flex items-center">
+        <Download class="select-none whitespace-nowrap bg-black/80 py-2 text-sm"
+          >Download Zen <span class="text-xs text-primary">alpha</span
+          ></Download
+        >
+      </div>
+    </section>
   </div>
 </footer>
