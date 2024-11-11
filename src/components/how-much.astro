@@ -217,11 +217,11 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     label {
-      @apply flex cursor-pointer items-center gap-3 rounded-md p-3 transition-colors duration-200 hover:bg-secondary;
+      @apply flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-secondary hover:text-white;
     }
 
     label:has(input:checked) {
-      @apply bg-secondary;
+      @apply bg-secondary text-white;
     }
 
     label span {

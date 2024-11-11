@@ -1,0 +1,8 @@
+---
+import { ny } from "@/lib/utils";
+const { class: className } = Astro.props;
+---
+
+<a href="/download" class={ny("btn-base", className)} draggable="false">
+  <slot /></a
+>

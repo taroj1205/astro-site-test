@@ -18,7 +18,7 @@ module.exports = {
       colors: {
         // primary: "hsl(258, 48%, 23%)",
         primary: "hsl(0 0% 20%)",
-        secondary: "hsl(22, 96%, 60%)",
+        secondary: "hsl(22, 100%, 50%)",
         muted: "hsl(0 0% 30%)",
       },
       spacing: {
@@ -74,11 +74,11 @@ module.exports = {
           "@apply font-bold text-primary leading-none": {},
         },
         h3: {
-          fontSize: `clamp(${theme("fontSize.5xl")}, 10vw, calc(${theme("fontSize.5xl")} + 1rem))`,
+          fontSize: `clamp(${theme("fontSize.4xl")}, 10vw, calc(${theme("fontSize.4xl")} + 1rem))`,
           "@apply font-bold text-primary leading-none": {},
         },
         p: {
-          "@apply text-primary leading-none": {},
+          "@apply text-primary": {},
         },
       });
       addComponents({
@@ -97,6 +97,10 @@ module.exports = {
         },
         ".btn-base": {
           "@apply bg-black text-primary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 dark:bg-white":
+            {},
+        },
+        ".description": {
+          "@apply max-w-prose text-xl text-muted drop-shadow-sm md:text-center":
             {},
         },
       });

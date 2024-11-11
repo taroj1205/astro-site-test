@@ -4,6 +4,7 @@ import DownloadIcon from "./icons/download-icon.astro";
 import browserImage from "@/assets/Redrawn_v1_Barebones.png";
 import "@fontsource/dm-sans/700.css";
 import { Image } from "astro:assets";
+import Download from "./download.astro";
 ---
 
 <section id="hero">
@@ -13,7 +14,7 @@ import { Image } from "astro:assets";
     care about your experience, not your data.
   </p>
   <div class="download">
-    <a href="/download" class="btn-base"> <DownloadIcon /> Download Zen</a>
+    <Download><DownloadIcon /> Download Zen</Download>
     <p>Available on Windows, Mac, and Linux</p>
   </div>
   <div class="hero__image">
@@ -35,10 +36,6 @@ import { Image } from "astro:assets";
 
     h2 {
       @apply drop-shadow-md md:text-center;
-    }
-
-    .description {
-      @apply max-w-prose text-xl text-muted drop-shadow-sm md:text-center;
     }
 
     .download {

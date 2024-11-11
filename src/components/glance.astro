@@ -1,0 +1,29 @@
+---
+import Download from "./download.astro";
+---
+
+<section>
+  <h3>Introducing Zen <span class="highlight">Glance</span> 👀</h3>
+  <p class="description">
+    Zen's glance feature allows you to quickly preview a website without leaving
+    your current page. It's perfect for checking out links before you click on
+    them, saving you time and hassle
+  </p>
+  <Download class="bg-secondary font-normal text-white"
+    >What are you waiting for?</Download
+  >
+  <video src="./glance.webm" autoplay loop muted></video>
+</section>
+
+<style>
+  @tailwind base;
+  @layer base {
+    section {
+      @apply section flex flex-col items-center gap-md py-20;
+    }
+
+    video {
+      @apply w-full rounded-lg;
+    }
+  }
+</style>
