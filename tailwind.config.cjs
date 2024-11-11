@@ -49,6 +49,14 @@ module.exports = {
         ],
         dm: ["DM Sans"],
       },
+      fontSize: {
+        "scale-sm": "clamp(1rem, 2vw, 1.5rem)",
+        "scale-md": "clamp(1.5rem, 3vw, 2rem)",
+        "scale-lg": "clamp(3rem, 6vw, 4rem)",
+        "scale-xl": "clamp(4rem, 8vw, 5rem)",
+        "scale-2xl": "clamp(5rem, 10vw, 6rem)",
+        "scale-3xl": "clamp(6rem, 12vw, 7rem)",
+      },
       screens: {
         "-sm": { max: "639px" },
         "-md": { max: "767px" },
@@ -62,13 +70,15 @@ module.exports = {
     plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         h2: {
-          "@apply text-7xl font-bold text-primary": {},
-        },
-        p: {
-          "@apply text-primary": {},
+          fontSize: `clamp(${theme("fontSize.6xl")}, 10vw, calc(${theme("fontSize.6xl")} + 1rem))`,
+          "@apply font-bold text-primary leading-none": {},
         },
         h3: {
-          "@apply text-5xl font-bold text-primary": {},
+          fontSize: `clamp(${theme("fontSize.5xl")}, 10vw, calc(${theme("fontSize.5xl")} + 1rem))`,
+          "@apply font-bold text-primary leading-none": {},
+        },
+        p: {
+          "@apply text-primary leading-none": {},
         },
       });
       addComponents({

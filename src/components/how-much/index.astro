@@ -26,6 +26,7 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
               name="view"
               value={mode}
               checked={mode === "compact"}
+              class="sr-only"
             />
             <span>{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>
           </label>
@@ -74,6 +75,8 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
 
 <script>
   const radioButtons = document.querySelectorAll('input[name="view"]');
+  const radioGroup = document.getElementById("radio-group") as HTMLElement;
+  const labels = radioGroup.querySelectorAll("label");
   const imageWrapper = document.getElementById("image-wrapper") as HTMLElement;
   const indicators = document.querySelectorAll(".indicator");
   const modeOrder = ["compact", "collapsed", "standard", "split"];
@@ -127,14 +130,77 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     });
   });
 
+  labels.forEach((label) => {
+    label.addEventListener("mouseenter", (e) => {
+      if (e.target instanceof HTMLLabelElement) {
+        const input = e.target.querySelector("input") as HTMLInputElement;
+        if (input) {
+          input.checked = true;
+          updateImages(input.value);
+        }
+      }
+    });
+  });
+
   indicators.forEach((indicator, index) => {
     indicator.addEventListener("click", () => {
+      updateImages(modeOrder[index]);
+    });
+
+    indicator.addEventListener("mouseenter", () => {
       updateImages(modeOrder[index]);
     });
   });
 
   slider.addEventListener("input", () => {
     updateImages(modeOrder[parseInt(slider.value)]);
+  });
+
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  imageWrapper.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    imageWrapper.style.transition = "none";
+  });
+
+  imageWrapper.addEventListener("touchmove", (e) => {
+    currentX = e.touches[0].clientX;
+
+    const deltaX = (currentX - startX) / 4;
+
+    const newTranslateX = deltaX + currentIndex * -100;
+
+    const maxTranslateX = (modeOrder.length - 1) * -100;
+
+    if (newTranslateX <= 10 && newTranslateX >= maxTranslateX - 10) {
+      imageWrapper.style.transform = `translateX(${newTranslateX}%)`;
+    }
+  });
+
+  imageWrapper.addEventListener("touchend", () => {
+    isDragging = false;
+    imageWrapper.style.transition = "transform 0.3s ease-in-out";
+    const deltaX = currentX - startX;
+    if (deltaX > 50 && currentIndex > 0) {
+      updateImages(modeOrder[currentIndex - 1]);
+    } else if (deltaX < -50 && currentIndex < modeOrder.length - 1) {
+      updateImages(modeOrder[currentIndex + 1]);
+    } else {
+      updateImages(modeOrder[currentIndex]);
+    }
+  });
+
+  imageWrapper.addEventListener("wheel", (e) => {
+    if (e.deltaY < 0 && currentIndex > 0) {
+      e.preventDefault();
+      updateImages(modeOrder[currentIndex - 1]);
+    } else if (e.deltaY > 0 && currentIndex < modeOrder.length - 1) {
+      e.preventDefault();
+      updateImages(modeOrder[currentIndex + 1]);
+    }
   });
 </script>
 
@@ -147,19 +213,19 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     section > div {
-      @apply flex flex-col gap-md rounded-lg p-6;
+      @apply flex flex-col gap-md rounded-lg py-6;
     }
 
     label {
-      @apply flex cursor-pointer items-center gap-3 rounded-md p-3 transition-colors hover:bg-gray-100;
+      @apply flex cursor-pointer items-center gap-3 rounded-md p-3 transition-colors duration-200 hover:bg-secondary;
+    }
+
+    label:has(input:checked) {
+      @apply bg-secondary;
     }
 
     label span {
       @apply text-lg;
-    }
-
-    input[type="radio"] {
-      @apply h-4 w-4 text-secondary focus:ring-secondary;
     }
 
     #image-container {
@@ -171,7 +237,7 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     img {
-      @apply aspect-[1.55/1] bg-[#272626] object-cover;
+      @apply aspect-[1.55/1] bg-[#272626] object-cover first:rounded-l-lg last:rounded-r-lg;
     }
 
     #radio-group {
