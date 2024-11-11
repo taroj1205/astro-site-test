@@ -1,0 +1,105 @@
+---
+// src/components/footer.astro
+import Download from "../download.astro";
+import { links } from "./data";
+---
+
+<footer class="w-full bg-primary">
+  <div class="container">
+    <div
+      class="grid w-full gap-12 pt-10 pb-4 lg:grid-cols-[1fr_5fr] lg:gap-24 lg:pb-8"
+    >
+      <section
+        class="-lg:items-center flex flex-col justify-center gap-6 place-self-center lg:place-self-end"
+      >
+        <div class="-lg:items-center flex flex-col gap-3">
+          <img src="./favicon.ico" alt="Zen Logo" class="w-14" />
+          <p class="whitespace-nowrap text-3xl font-extrabold text-black">
+            Zen Browser
+          </p>
+        </div>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://uptime.zen-browser.app/"
+          class="mt-2 flex w-fit cursor-pointer items-center rounded-md bg-gray-200 px-3 py-2 shadow-xl"
+        >
+          <div
+            class="relative grid h-3 w-3 place-items-center rounded-full bg-green-500 shadow"
+          >
+            <div
+              class="absolute z-0 h-3 w-3 animate-ping rounded-full bg-green-500"
+              style={{ animationDuration: "1.7s" }}
+            >
+            </div>
+          </div>
+          <p class="ml-3 font-bold text-black opacity-60">System Status</p>
+        </a>
+        <div class="-lg:items-center flex flex-col gap-3">
+          <p class="text-lg text-black">Follow us</p>
+          <div class="flex gap-3">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/zen_browser"
+            >
+              <div class="h-8 w-8 rounded-full bg-black"></div>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/zen_browser"
+            >
+              <div class="h-8 w-8 rounded-full bg-black"></div>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/zen_browser"
+            >
+              <div class="h-8 w-8 rounded-full bg-black"></div>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/zen_browser"
+            >
+              <div class="h-8 w-8 rounded-full bg-black"></div>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section
+        class="grid grid-cols-3 gap-8 place-self-center lg:place-self-end"
+      >
+        {
+          links.map(({ title, links }) => (
+            <div class="flex flex-col gap-2">
+              <p class="text-lg font-bold text-black">{title}</p>
+              {links.map(({ title, href }) => (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={href}
+                  class="text-secondary hover:underline"
+                >
+                  {title}
+                </a>
+              ))}
+            </div>
+          ))
+        }
+        <div class="place-self-end lg:justify-self-start">
+          <Download class="whitespace-nowrap bg-black/80 py-2 text-sm"
+            >Download Zen <span class="text-xs text-primary">alpha</span
+            ></Download
+          >
+        </div>
+      </section>
+    </div>
+    <hr class="border-t-1 border-black" />
+    <p class="py-8 text-center text-lg text-secondary">
+      © 2024 Zen Browser. All rights reserved.
+    </p>
+  </div>
+</footer>

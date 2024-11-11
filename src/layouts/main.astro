@@ -1,7 +1,7 @@
 ---
 import CircleEffect from "../components/circle-effect.astro";
 import Header from "../components/header.astro";
-import Footer from "../components/footer.astro";
+import Footer from "../components/footer/index.astro";
 const { title } = Astro.props;
 import "@fontsource/inter";
 import ColorChange from "@/components/color-change.astro";
@@ -21,17 +21,17 @@ import ColorChange from "@/components/color-change.astro";
     <title>{title}</title>
   </head>
   <body>
-    <div class="container flex min-h-screen flex-col items-center gap-y-4xl">
+    <div class="flex min-h-screen flex-col items-center gap-y-4xl">
       <CircleEffect />
       <div
         class="absolute inset-0 -z-10 bg-gradient-to-b from-primary/20 to-transparent"
       >
       </div>
       <Header />
-      <main class="flex w-full flex-col gap-40"><slot /></main>
+      <main class="container flex w-full flex-col gap-40"><slot /></main>
+      <ColorChange />
+      <Footer />
     </div>
-    <Footer />
-    <ColorChange />
   </body>
 </html>
 
