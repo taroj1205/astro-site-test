@@ -16,8 +16,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "hsl(22, 96%, 60%)",
-        muted: "hsl(22, 96%, 70%)",
+        // primary: "hsl(258, 48%, 23%)",
+        primary: "hsl(0 0% 20%)",
+        secondary: "hsl(22, 96%, 60%)",
+        muted: "hsl(0 0% 30%)",
       },
       spacing: {
         xs: "0.5rem",
@@ -34,9 +36,6 @@ module.exports = {
         "8xl": "10rem",
         "9xl": "11rem",
       },
-      fontSize: {
-        "scale-large": "clamp(3rem, 6vw, 4rem)",
-      },
       fontFamily: {
         sans: [
           "Inter",
@@ -50,20 +49,26 @@ module.exports = {
         ],
         dm: ["DM Sans"],
       },
-      dropShadow: {
-        glow: [
-          "0 0px 5px hsla(22, 96%, 60%, 0.90)",
-          "0 0px 20px hsla(22, 96%, 60%, 0.75)"
-        ]
-      }
+      screens: {
+        "-sm": { max: "639px" },
+        "-md": { max: "767px" },
+        "-lg": { max: "1023px" },
+        "-xl": { max: "1279px" },
+        "-2xl": { max: "1535px" },
+      },
     },
   },
   plugins: [
     plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         h2: {
-          "@apply text-scale-large font-bold text-primary": {},
-
+          "@apply text-7xl font-bold text-primary": {},
+        },
+        p: {
+          "@apply text-primary": {},
+        },
+        h3: {
+          "@apply text-5xl font-bold text-primary": {},
         },
       });
       addComponents({
@@ -74,12 +79,14 @@ module.exports = {
           alignItems: "center",
           textAlign: "center",
         },
+        ".highlight": {
+          color: theme("colors.secondary"),
+        },
         ".center": {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 dark:bg-white dark:text-black":
-
+          "@apply bg-black text-primary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 dark:bg-white":
             {},
         },
       });

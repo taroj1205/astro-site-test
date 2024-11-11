@@ -1,8 +1,9 @@
 ---
 import CircleEffect from "../components/circle-effect.astro";
 import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
 const { title } = Astro.props;
-import '@fontsource/inter';
+import "@fontsource/inter";
 ---
 
 <html lang="en">
@@ -21,21 +22,13 @@ import '@fontsource/inter';
   <body>
     <div class="container flex min-h-screen flex-col items-center gap-y-4xl">
       <CircleEffect />
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/20 to-transparent"
+      >
+      </div>
       <Header />
-      <main class="flex w-full flex-col gap-4"><slot /></main>
+      <main class="flex w-full flex-col gap-40"><slot /></main>
+      <Footer />
     </div>
   </body>
 </html>
-
-<style>
-  body {
-    background: linear-gradient(
-        to bottom,
-        hsla(22, 96%, 60%, 0.1),
-        transparent 70%
-      ),
-      linear-gradient(to bottom, hsla(22, 96%, 60%, 0.05), transparent 50%),
-      linear-gradient(to bottom, hsla(22, 96%, 60%, 0.03), transparent 30%);
-    background-size: cover;
-  }
-</style>

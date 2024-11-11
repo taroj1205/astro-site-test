@@ -1,0 +1,140 @@
+---
+import { Image } from "astro:assets";
+import compactImage from "@/assets/modes/compact.png";
+import collapsedImage from "@/assets/modes/collapsed.png";
+import standardImage from "@/assets/modes/standard.png";
+import splitImage from "@/assets/modes/split.png";
+import "./styles.css";
+
+type ModesOptions = "compact" | "collapsed" | "standard" | "split";
+
+const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
+---
+
+<section id="how-much">
+  <div>
+    <h3>
+      How <span class="highlight">much</span> browser do you want?
+    </h3>
+    <fieldset id="radio-group">
+      <legend class="sr-only">Choose a view</legend>
+      {
+        modes.map((mode) => (
+          <label for={mode}>
+            <input
+              type="radio"
+              id={mode}
+              name="view"
+              value={mode}
+              checked={mode === "compact"}
+            />
+            <span>{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>
+          </label>
+        ))
+      }
+    </fieldset>
+    <div id="slider-container">
+      <span id="slider-value">🌱</span>
+      <input
+        type="range"
+        id="view-slider"
+        min="0"
+        max="3"
+        value="0"
+        class="w-full"
+      />
+      <span id="slider-value">🌳</span>
+    </div>
+  </div>
+  <div id="image-container">
+    <div id="image-wrapper">
+      {
+        modes.map((mode, index) => (
+          <Image
+            src={
+              [compactImage, collapsedImage, standardImage, splitImage][index]
+            }
+            alt={`${mode} browser view`}
+            id={mode}
+          />
+        ))
+      }
+    </div>
+    <div id="carousel-indicators">
+      {
+        modes.map((_, index) => (
+          <span
+            class:list={["indicator", { active: index === 0 }]}
+            data-index={index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const radioButtons = document.querySelectorAll('input[name="view"]');
+  const imageWrapper = document.getElementById("image-wrapper") as HTMLElement;
+  const indicators = document.querySelectorAll(".indicator");
+  const modeOrder = ["compact", "collapsed", "standard", "split"];
+  let currentIndex = 0;
+
+  const slider = document.getElementById("view-slider") as HTMLInputElement;
+
+  function updateImages(selectedMode: string) {
+    const selectedIndex = modeOrder.indexOf(selectedMode);
+    currentIndex = selectedIndex;
+    const offset = selectedIndex * -100;
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    if (mediaQuery.matches) {
+      imageWrapper.style.transform = `translateY(${offset}%)`;
+    } else {
+      imageWrapper.style.transform = `translateX(${offset}%)`;
+    }
+    updateIndicators();
+    updateRadioButtons();
+    updateSlider();
+  }
+
+  function updateIndicators() {
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add("active");
+      } else {
+        indicator.classList.remove("active");
+      }
+    });
+  }
+
+  function updateRadioButtons() {
+    const selectedRadio = document.querySelector(
+      `input[value="${modeOrder[currentIndex]}"]`
+    ) as HTMLInputElement;
+    if (selectedRadio) {
+      selectedRadio.checked = true;
+    }
+  }
+
+  function updateSlider() {
+    slider.value = currentIndex.toString();
+  }
+
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      if (e.target instanceof HTMLInputElement && e.target.checked) {
+        updateImages(e.target.value);
+      }
+    });
+  });
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      updateImages(modeOrder[index]);
+    });
+  });
+
+  slider.addEventListener("input", () => {
+    updateImages(modeOrder[parseInt(slider.value)]);
+  });
+</script>

@@ -7,7 +7,7 @@ import Navbar from "./navbar.astro";
 <header>
   <Navbar />
   <section>
-    <LanguageIcon class="h-7 w-7 text-primary dark:text-primary-dark" />
+    <LanguageIcon class="dark:text-primary-dark h-7 w-7 text-primary" />
     <a href="/download" class="btn-base py-2"><DownloadIcon />v1.0.1-a.17</a>
   </section>
 </header>
@@ -20,7 +20,7 @@ import Navbar from "./navbar.astro";
     }
 
     section {
-      @apply flex items-center gap-4;
+      @apply flex items-center gap-10;
     }
   }
 </style>
