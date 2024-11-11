@@ -62,6 +62,17 @@
     const color = (e.target as HTMLInputElement).value;
     document.documentElement.style.setProperty("--primary", color);
   });
+
+  colorInput?.addEventListener("input", (e) => {
+    const color = (e.target as HTMLInputElement).value;
+    document.documentElement.style.setProperty("--primary", color);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key === "c") {
+      colorInput?.classList.toggle("hidden");
+    }
+  });
 </script>
 
 <style>
