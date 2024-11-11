@@ -18,7 +18,8 @@ module.exports = {
       colors: {
         // secondary: "hsl(258, 48%, 23%)",
         secondary: "hsl(0, 0%, 20%)",
-        primary: "hsl(6, 96%, 70%)",
+        // primary: "hsl(6, 96%, 70%)",
+        primary: "var(--primary)",
         muted: "hsl(0, 0%, 30%)",
       },
       spacing: {

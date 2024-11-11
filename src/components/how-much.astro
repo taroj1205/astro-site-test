@@ -111,7 +111,7 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
 
   function updateRadioButtons() {
     const selectedRadio = document.querySelector(
-      `input[value="${modeOrder[currentIndex]}"]`
+      `input[value="${modeOrder[currentIndex]}"]`,
     ) as HTMLInputElement;
     if (selectedRadio) {
       selectedRadio.checked = true;
@@ -245,7 +245,7 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     #carousel-indicators {
-      @apply -xl:bottom-4 -xl:left-1/2 absolute flex -translate-x-1/2 transform gap-2 xl:top-1/2 xl:right-4 xl:-translate-y-1/2 xl:flex-col;
+      @apply absolute flex -translate-x-1/2 transform gap-2 xl:top-1/2 xl:right-4 xl:-translate-y-1/2 xl:flex-col -xl:bottom-4 -xl:left-1/2;
     }
 
     .indicator {

@@ -4,6 +4,7 @@ import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 const { title } = Astro.props;
 import "@fontsource/inter";
+import ColorChange from "@/components/color-change.astro";
 ---
 
 <html lang="en">
@@ -28,8 +29,9 @@ import "@fontsource/inter";
       </div>
       <Header />
       <main class="flex w-full flex-col gap-40"><slot /></main>
-      <Footer />
     </div>
+    <Footer />
+    <ColorChange />
   </body>
 </html>
 
@@ -43,5 +45,9 @@ import "@fontsource/inter";
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  :root {
+    --primary: hsl(6, 96%, 70%);
   }
 </style>
