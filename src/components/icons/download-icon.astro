@@ -1,15 +1,16 @@
 ---
 import { ny } from "../../lib/utils";
-const { class: className } = Astro.props;
+const { class: className, strokeWidth = "1.5", ...props } = Astro.props;
 ---
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
   viewBox="0 0 24 24"
-  stroke-width="1.5"
+  stroke-width={strokeWidth}
   stroke="currentColor"
   class={ny("w-5 h-5", className)}
+  {...props}
 >
   <path
     stroke-linecap="round"
