@@ -1,0 +1,31 @@
+<input type="color" id="themeColor" value="#f98175" aria-label="Theme color" />
+
+<script>
+  const colorInput = document.querySelector("#themeColor") as HTMLInputElement;
+
+  colorInput?.addEventListener("input", (e) => {
+    const color = (e.target as HTMLInputElement).value;
+    document.documentElement.style.setProperty("--primary", color);
+  });
+</script>
+
+<style>
+  @tailwind base;
+  @layer base {
+    #themeColor {
+      @apply h-10 w-10 cursor-pointer rounded border-none bg-transparent outline-none;
+    }
+
+    #themeColor::-moz-color-swatch {
+      @apply border-none;
+    }
+
+    #themeColor::-webkit-color-swatch-wrapper {
+      @apply border-none p-0;
+    }
+
+    #themeColor::-webkit-color-swatch {
+      @apply border-none;
+    }
+  }
+</style>

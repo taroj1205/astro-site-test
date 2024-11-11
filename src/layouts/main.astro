@@ -4,7 +4,6 @@ import Header from "../components/header.astro";
 import Footer from "../components/footer/index.astro";
 const { title } = Astro.props;
 import "@fontsource/inter";
-import ColorChange from "@/components/color-change.astro";
 ---
 
 <html lang="en">
@@ -29,7 +28,6 @@ import ColorChange from "@/components/color-change.astro";
       </div>
       <Header />
       <main class="container flex w-full flex-col gap-40"><slot /></main>
-      <ColorChange />
       <Footer />
     </div>
   </body>
