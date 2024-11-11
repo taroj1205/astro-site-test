@@ -2,12 +2,62 @@
   type="color"
   id="themeColor"
   value="#f98175"
-  class="cursor-pointer rounded border-none bg-transparent"
+  class="cursor-move rounded border-none bg-transparent"
   aria-label="Theme color"
 />
 
 <script>
   const colorInput = document.querySelector("#themeColor") as HTMLInputElement;
+  let isDragging = false;
+  let currentX: number;
+  let currentY: number;
+  let initialX: number;
+  let initialY: number;
+
+  // Load saved position from localStorage
+  const savedX = localStorage.getItem("themeColorX");
+  const savedY = localStorage.getItem("themeColorY");
+  if (savedX && savedY) {
+    colorInput.style.left = savedX;
+    colorInput.style.top = savedY;
+  }
+
+  colorInput?.addEventListener("mousedown", (e) => {
+    // Only handle left click
+    if (e.button !== 0) return;
+    isDragging = true;
+    initialX = e.clientX - colorInput.offsetLeft;
+    initialY = e.clientY - colorInput.offsetTop;
+  });
+
+  colorInput?.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    // Reset position
+    colorInput.style.removeProperty("left");
+    colorInput.style.removeProperty("top");
+    localStorage.removeItem("themeColorX");
+    localStorage.removeItem("themeColorY");
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    currentX = e.clientX - initialX;
+    currentY = e.clientY - initialY;
+
+    colorInput.style.left = `${currentX}px`;
+    colorInput.style.top = `${currentY}px`;
+
+    // Save position to localStorage
+    localStorage.setItem("themeColorX", `${currentX}px`);
+    localStorage.setItem("themeColorY", `${currentY}px`);
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
   colorInput?.addEventListener("input", (e) => {
     const color = (e.target as HTMLInputElement).value;
     document.documentElement.style.setProperty("--primary", color);
