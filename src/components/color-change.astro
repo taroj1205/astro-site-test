@@ -1,85 +1,48 @@
-<input
-  type="color"
-  id="themeColor"
-  value="#f98175"
-  class="cursor-move rounded border-none bg-transparent"
-  aria-label="Theme color"
-/>
+<div id="contextMenu" class="fixed z-20 hidden rounded bg-white p-2 shadow-md">
+  <button id="changeThemeColor" class="block w-full text-left">
+    Change Theme Colors
+    <input type="color" id="colorInput" class="hidden" />
+  </button>
+</div>
 
 <script>
-  const colorInput = document.querySelector("#themeColor") as HTMLInputElement;
-  let isDragging = false;
-  let currentX: number;
-  let currentY: number;
-  let initialX: number;
-  let initialY: number;
+  const contextMenu = document.querySelector("#contextMenu") as HTMLElement;
+  const changeThemeColorButton = document.querySelector("#changeThemeColor");
+  const colorInput = document.querySelector("#colorInput") as HTMLInputElement;
 
-  // Load saved position from localStorage
-  const savedX = localStorage.getItem("themeColorX");
-  const savedY = localStorage.getItem("themeColorY");
-  if (savedX && savedY) {
-    colorInput.style.left = savedX;
-    colorInput.style.top = savedY;
-  }
-
-  colorInput?.addEventListener("mousedown", (e) => {
-    // Only handle left click
-    if (e.button !== 0) return;
-    isDragging = true;
-    initialX = e.clientX - colorInput.offsetLeft;
-    initialY = e.clientY - colorInput.offsetTop;
-  });
-
-  colorInput?.addEventListener("contextmenu", (e) => {
+  document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
-    // Reset position
-    colorInput.style.removeProperty("left");
-    colorInput.style.removeProperty("top");
-    localStorage.removeItem("themeColorX");
-    localStorage.removeItem("themeColorY");
+    contextMenu.style.left = `${e.clientX}px`;
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.classList.remove("hidden");
   });
 
-  document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-
-    currentX = e.clientX - initialX;
-    currentY = e.clientY - initialY;
-
-    colorInput.style.left = `${currentX}px`;
-    colorInput.style.top = `${currentY}px`;
-
-    // Save position to localStorage
-    localStorage.setItem("themeColorX", `${currentX}px`);
-    localStorage.setItem("themeColorY", `${currentY}px`);
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-
-  colorInput?.addEventListener("input", (e) => {
-    const color = (e.target as HTMLInputElement).value;
-    document.documentElement.style.setProperty("--primary", color);
-  });
-
-  colorInput?.addEventListener("input", (e) => {
-    const color = (e.target as HTMLInputElement).value;
-    document.documentElement.style.setProperty("--primary", color);
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.ctrlKey && e.key === "c") {
-      colorInput?.classList.toggle("hidden");
+  document.addEventListener("click", (e) => {
+    if (!contextMenu.contains(e.target as Node)) {
+      contextMenu.classList.add("hidden");
     }
+  });
+
+  changeThemeColorButton.addEventListener("click", () => {
+    colorInput.click();
+  });
+
+  colorInput.addEventListener("click", (e) => {
+    e.stopPropagation();
+    contextMenu.classList.add("hidden");
+  });
+
+  colorInput.addEventListener("input", (e) => {
+    const color = (e.target as HTMLInputElement).value;
+    document.documentElement.style.setProperty("--primary", color);
   });
 </script>
 
 <style>
   @tailwind base;
   @layer base {
-    #themeColor {
-      @apply fixed top-1/2 right-2 h-10 w-10 appearance-none;
+    #contextMenu {
+      @apply fixed top-1/2 right-2 h-auto w-56 appearance-none;
     }
   }
 </style>
