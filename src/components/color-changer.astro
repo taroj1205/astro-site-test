@@ -3,6 +3,13 @@
 <script>
   const colorInput = document.querySelector("#themeColor") as HTMLInputElement;
 
+  function updateColor() {
+    const color = colorInput?.value;
+    document.documentElement.style.setProperty("--primary", color);
+  }
+
+  colorInput?.addEventListener("input", updateColor);
+
   colorInput?.addEventListener("input", (e) => {
     const color = (e.target as HTMLInputElement).value;
     document.documentElement.style.setProperty("--primary", color);
