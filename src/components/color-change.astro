@@ -1,0 +1,24 @@
+<input
+  type="color"
+  id="themeColor"
+  value="#f98175"
+  class="cursor-pointer rounded border-none bg-transparent"
+  aria-label="Theme color"
+/>
+
+<script>
+  const colorInput = document.querySelector("#themeColor") as HTMLInputElement;
+  colorInput?.addEventListener("input", (e) => {
+    const color = (e.target as HTMLInputElement).value;
+    document.documentElement.style.setProperty("--primary", color);
+  });
+</script>
+
+<style>
+  @tailwind base;
+  @layer base {
+    #themeColor {
+      @apply fixed top-1/2 right-2 h-10 w-10 appearance-none;
+    }
+  }
+</style>

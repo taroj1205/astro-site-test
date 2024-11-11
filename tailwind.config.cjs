@@ -16,8 +16,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "hsl(22, 96%, 60%)",
-        muted: "hsl(22, 96%, 70%)",
+        // secondary: "hsl(258, 48%, 23%)",
+        secondary: "hsl(0, 0%, 20%)",
+        // primary: "hsl(6, 96%, 70%)",
+        primary: "var(--primary)",
+        muted: "hsl(0, 0%, 30%)",
       },
       spacing: {
         xs: "0.5rem",
@@ -34,9 +37,6 @@ module.exports = {
         "8xl": "10rem",
         "9xl": "11rem",
       },
-      fontSize: {
-        "scale-large": "clamp(3rem, 6vw, 4rem)",
-      },
       fontFamily: {
         sans: [
           "Inter",
@@ -50,20 +50,36 @@ module.exports = {
         ],
         dm: ["DM Sans"],
       },
-      dropShadow: {
-        glow: [
-          "0 0px 5px hsla(22, 96%, 60%, 0.90)",
-          "0 0px 20px hsla(22, 96%, 60%, 0.75)"
-        ]
-      }
+      fontSize: {
+        "scale-sm": "clamp(1rem, 2vw, 1.5rem)",
+        "scale-md": "clamp(1.5rem, 3vw, 2rem)",
+        "scale-lg": "clamp(3rem, 6vw, 4rem)",
+        "scale-xl": "clamp(4rem, 8vw, 5rem)",
+        "scale-2xl": "clamp(5rem, 10vw, 6rem)",
+        "scale-3xl": "clamp(6rem, 12vw, 7rem)",
+      },
+      screens: {
+        "-sm": { max: "639px" },
+        "-md": { max: "767px" },
+        "-lg": { max: "1023px" },
+        "-xl": { max: "1279px" },
+        "-2xl": { max: "1535px" },
+      },
     },
   },
   plugins: [
     plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         h2: {
-          "@apply text-scale-large font-bold text-primary": {},
-
+          fontSize: `clamp(${theme("fontSize.6xl")}, 10vw, calc(${theme("fontSize.6xl")} + 1rem))`,
+          "@apply font-bold text-secondary leading-none": {},
+        },
+        h3: {
+          fontSize: `clamp(${theme("fontSize.4xl")}, 10vw, calc(${theme("fontSize.4xl")} + 1rem))`,
+          "@apply font-bold text-secondary leading-none": {},
+        },
+        p: {
+          "@apply text-secondary": {},
         },
       });
       addComponents({
@@ -74,12 +90,18 @@ module.exports = {
           alignItems: "center",
           textAlign: "center",
         },
+        ".highlight": {
+          color: theme("colors.primary"),
+        },
         ".center": {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply bg-black text-white font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 dark:bg-white dark:text-black":
-
+          "@apply text-white py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-primary":
+            {},
+        },
+        ".description": {
+          "@apply max-w-prose text-xl text-muted drop-shadow-sm md:text-center":
             {},
         },
       });

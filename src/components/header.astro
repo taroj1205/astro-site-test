@@ -1,4 +1,5 @@
 ---
+import Download from "./download.astro";
 import DownloadIcon from "./icons/download-icon.astro";
 import LanguageIcon from "./icons/language-icon.astro";
 import Navbar from "./navbar.astro";
@@ -7,8 +8,10 @@ import Navbar from "./navbar.astro";
 <header>
   <Navbar />
   <section>
-    <LanguageIcon class="h-7 w-7 text-primary dark:text-primary-dark" />
-    <a href="/download" class="btn-base py-2"><DownloadIcon />v1.0.1-a.17</a>
+    <LanguageIcon class="dark:text-secondary-dark h-7 w-7 text-secondary" />
+    <Download class="py-2 font-semibold"
+      ><DownloadIcon strokeWidth="2.5" />v1.0.1-a.17</Download
+    >
   </section>
 </header>
 
@@ -20,7 +23,7 @@ import Navbar from "./navbar.astro";
     }
 
     section {
-      @apply flex items-center gap-4;
+      @apply flex items-center gap-10;
     }
   }
 </style>

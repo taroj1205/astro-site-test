@@ -1,0 +1,61 @@
+<section id="why-zen">
+  <h3>Why Zen?</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Zen</th>
+        <th>Arc</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Customization</td>
+        <td>◯</td>
+        <td>✗</td>
+      </tr>
+      <tr>
+        <td>Open Source</td>
+        <td>◯</td>
+        <td>✗</td>
+      </tr>
+      <tr>
+        <td>Privacy</td>
+        <td>◯</td>
+        <td>✗</td>
+      </tr>
+      <tr>
+        <td>Ad block</td>
+        <td>◯</td>
+        <td>△*</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<style>
+  @tailwind base;
+
+  @layer base {
+    #why-zen {
+      @apply flex flex-col gap-4 p-6;
+    }
+
+    table {
+      @apply w-full max-w-2xl border-collapse text-left;
+    }
+
+    th,
+    td {
+      @apply border border-gray-300 px-4 py-2 text-3xl;
+    }
+
+    th {
+      @apply bg-gray-100 text-center;
+    }
+
+    td {
+      @apply text-center;
+    }
+  }
+</style>
