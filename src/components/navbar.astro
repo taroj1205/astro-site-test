@@ -1,7 +1,5 @@
 <nav>
-  <a
-    href="/"  
-  >
+  <a href="/">
     <img
       alt="Zen Logo"
       loading="lazy"
@@ -18,7 +16,10 @@
     <li><a href="https://docs.zen-browser.app/">Resources</a></li>
     <li><a href="https://zen-browser.app/mods">Mods</a></li>
     <li>
-      <a href="https://www.patreon.com/zen_browser?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">Donate</a>
+      <a
+        href="https://www.patreon.com/zen_browser?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+        >Donate</a
+      >
     </li>
   </ul>
 </nav>
@@ -27,10 +28,10 @@
   @tailwind base;
   @layer base {
     nav {
-      @apply flex justify-center gap-10 text-primary font-semibold text-lg;
+      @apply flex justify-center gap-10 text-lg font-semibold text-secondary;
     }
     ul {
-      @apply hidden items-center justify-center gap-10 md:flex drop-shadow-md;
+      @apply hidden items-center justify-center gap-10 drop-shadow-md md:flex;
     }
   }
 </style>

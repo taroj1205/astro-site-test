@@ -16,9 +16,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        // primary: "hsl(258, 48%, 23%)",
-        primary: "hsl(0, 0%, 20%)",
-        secondary: "hsl(6, 96%, 70%)",
+        // secondary: "hsl(258, 48%, 23%)",
+        secondary: "hsl(0, 0%, 20%)",
+        primary: "hsl(6, 96%, 70%)",
         muted: "hsl(0, 0%, 30%)",
       },
       spacing: {
@@ -71,14 +71,14 @@ module.exports = {
       addBase({
         h2: {
           fontSize: `clamp(${theme("fontSize.6xl")}, 10vw, calc(${theme("fontSize.6xl")} + 1rem))`,
-          "@apply font-bold text-primary leading-none": {},
+          "@apply font-bold text-secondary leading-none": {},
         },
         h3: {
           fontSize: `clamp(${theme("fontSize.4xl")}, 10vw, calc(${theme("fontSize.4xl")} + 1rem))`,
-          "@apply font-bold text-primary leading-none": {},
+          "@apply font-bold text-secondary leading-none": {},
         },
         p: {
-          "@apply text-primary": {},
+          "@apply text-secondary": {},
         },
       });
       addComponents({
@@ -90,13 +90,13 @@ module.exports = {
           textAlign: "center",
         },
         ".highlight": {
-          color: theme("colors.secondary"),
+          color: theme("colors.primary"),
         },
         ".center": {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply text-primary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-white":
+          "@apply text-secondary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-white":
             {},
         },
         ".description": {

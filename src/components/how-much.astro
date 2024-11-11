@@ -217,11 +217,11 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     label {
-      @apply flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-secondary hover:text-white;
+      @apply flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-primary hover:text-white;
     }
 
     label:has(input:checked) {
-      @apply bg-secondary text-white;
+      @apply bg-primary text-white;
     }
 
     label span {
@@ -249,7 +249,7 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     .indicator {
-      @apply h-3 w-3 cursor-pointer rounded-full bg-secondary bg-opacity-50 transition-all duration-300 ease-in-out;
+      @apply h-3 w-3 cursor-pointer rounded-full bg-primary bg-opacity-50 transition-all duration-300 ease-in-out;
     }
 
     .indicator.active {
