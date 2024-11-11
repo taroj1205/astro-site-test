@@ -1,0 +1,271 @@
+---
+import { Image } from "astro:assets";
+import compactImage from "@/assets/modes/compact.png";
+import collapsedImage from "@/assets/modes/collapsed.png";
+import standardImage from "@/assets/modes/standard.png";
+import splitImage from "@/assets/modes/split.png";
+
+type ModesOptions = "compact" | "collapsed" | "standard" | "split";
+
+const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
+---
+
+<section id="how-much">
+  <div>
+    <h3>
+      How <span class="highlight">much</span> browser do you want?
+    </h3>
+    <fieldset id="radio-group">
+      <legend class="sr-only">Choose a view</legend>
+      {
+        modes.map((mode) => (
+          <label for={mode}>
+            <input
+              type="radio"
+              id={mode}
+              name="view"
+              value={mode}
+              checked={mode === "compact"}
+              class="sr-only"
+            />
+            <span>{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>
+          </label>
+        ))
+      }
+    </fieldset>
+    <div id="slider-container">
+      <span id="slider-value">🌱</span>
+      <input
+        type="range"
+        id="view-slider"
+        min="0"
+        max="3"
+        value="0"
+        class="w-full"
+      />
+      <span id="slider-value">🌳</span>
+    </div>
+  </div>
+  <div id="image-container">
+    <div id="image-wrapper">
+      {
+        modes.map((mode, index) => (
+          <Image
+            src={
+              [compactImage, collapsedImage, standardImage, splitImage][index]
+            }
+            alt={`${mode} browser view`}
+            id={mode}
+          />
+        ))
+      }
+    </div>
+    <div id="carousel-indicators">
+      {
+        modes.map((_, index) => (
+          <span
+            class:list={["indicator", { active: index === 0 }]}
+            data-index={index}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const radioButtons = document.querySelectorAll('input[name="view"]');
+  const radioGroup = document.getElementById("radio-group") as HTMLElement;
+  const labels = radioGroup.querySelectorAll("label");
+  const imageWrapper = document.getElementById("image-wrapper") as HTMLElement;
+  const indicators = document.querySelectorAll(".indicator");
+  const modeOrder = ["compact", "collapsed", "standard", "split"];
+  let currentIndex = 0;
+
+  const slider = document.getElementById("view-slider") as HTMLInputElement;
+
+  function updateImages(selectedMode: string) {
+    const selectedIndex = modeOrder.indexOf(selectedMode);
+    currentIndex = selectedIndex;
+    const offset = selectedIndex * -100;
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    if (mediaQuery.matches) {
+      imageWrapper.style.transform = `translateY(${offset}%)`;
+    } else {
+      imageWrapper.style.transform = `translateX(${offset}%)`;
+    }
+    updateIndicators();
+    updateRadioButtons();
+    updateSlider();
+  }
+
+  function updateIndicators() {
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add("active");
+      } else {
+        indicator.classList.remove("active");
+      }
+    });
+  }
+
+  function updateRadioButtons() {
+    const selectedRadio = document.querySelector(
+      `input[value="${modeOrder[currentIndex]}"]`,
+    ) as HTMLInputElement;
+    if (selectedRadio) {
+      selectedRadio.checked = true;
+    }
+  }
+
+  function updateSlider() {
+    slider.value = currentIndex.toString();
+  }
+
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", (e) => {
+      if (e.target instanceof HTMLInputElement && e.target.checked) {
+        updateImages(e.target.value);
+      }
+    });
+  });
+
+  labels.forEach((label) => {
+    label.addEventListener("mouseenter", (e) => {
+      if (e.target instanceof HTMLLabelElement) {
+        const input = e.target.querySelector("input") as HTMLInputElement;
+        if (input) {
+          input.checked = true;
+          updateImages(input.value);
+        }
+      }
+    });
+  });
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      updateImages(modeOrder[index]);
+    });
+
+    indicator.addEventListener("mouseenter", () => {
+      updateImages(modeOrder[index]);
+    });
+  });
+
+  slider.addEventListener("input", () => {
+    updateImages(modeOrder[parseInt(slider.value)]);
+  });
+
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
+  imageWrapper.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    imageWrapper.style.transition = "none";
+  });
+
+  imageWrapper.addEventListener("touchmove", (e) => {
+    currentX = e.touches[0].clientX;
+
+    const deltaX = (currentX - startX) / 4;
+
+    const newTranslateX = deltaX + currentIndex * -100;
+
+    const maxTranslateX = (modeOrder.length - 1) * -100;
+
+    if (newTranslateX <= 10 && newTranslateX >= maxTranslateX - 10) {
+      imageWrapper.style.transform = `translateX(${newTranslateX}%)`;
+    }
+  });
+
+  imageWrapper.addEventListener("touchend", () => {
+    isDragging = false;
+    imageWrapper.style.transition = "transform 0.3s ease-in-out";
+    const deltaX = currentX - startX;
+    if (deltaX > 50 && currentIndex > 0) {
+      updateImages(modeOrder[currentIndex - 1]);
+    } else if (deltaX < -50 && currentIndex < modeOrder.length - 1) {
+      updateImages(modeOrder[currentIndex + 1]);
+    } else {
+      updateImages(modeOrder[currentIndex]);
+    }
+  });
+
+  imageWrapper.addEventListener("wheel", (e) => {
+    if (e.deltaY < 0 && currentIndex > 0) {
+      e.preventDefault();
+      updateImages(modeOrder[currentIndex - 1]);
+    } else if (e.deltaY > 0 && currentIndex < modeOrder.length - 1) {
+      e.preventDefault();
+      updateImages(modeOrder[currentIndex + 1]);
+    }
+  });
+</script>
+
+<style>
+  @tailwind base;
+
+  @layer base {
+    section {
+      @apply grid w-full grid-cols-1 justify-center xl:grid-cols-[1fr_2fr] xl:gap-8;
+    }
+
+    section > div {
+      @apply flex flex-col gap-md rounded-lg py-6;
+    }
+
+    label {
+      @apply flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-primary hover:text-white;
+    }
+
+    label:has(input:checked) {
+      @apply bg-primary text-white;
+    }
+
+    label span {
+      @apply text-lg;
+    }
+
+    #image-container {
+      @apply relative aspect-[1.55/1] overflow-clip rounded-lg;
+    }
+
+    #image-wrapper {
+      @apply absolute inset-0 flex flex-row transition-transform duration-300 ease-in-out xl:flex-col;
+    }
+
+    img {
+      @apply aspect-[1.55/1] bg-[#272626] object-cover first:rounded-l-lg last:rounded-r-lg;
+    }
+
+    #radio-group {
+      @apply hidden flex-col xl:flex;
+    }
+
+    #carousel-indicators {
+      @apply absolute flex -translate-x-1/2 transform gap-2 xl:top-1/2 xl:right-4 xl:-translate-y-1/2 xl:flex-col -xl:bottom-4 -xl:left-1/2;
+    }
+
+    .indicator {
+      @apply h-3 w-3 cursor-pointer rounded-full bg-primary bg-opacity-50 transition-all duration-300 ease-in-out;
+    }
+
+    .indicator.active {
+      @apply w-8 bg-opacity-100 xl:h-8 xl:w-3;
+    }
+
+    #slider-container {
+      @apply grid w-full max-w-xl grid-cols-[auto_1fr_auto] gap-md place-self-center xl:hidden;
+    }
+
+    #view-slider {
+      @apply w-full;
+    }
+
+    #slider-labels {
+      @apply text-xs;
+    }
+  }
+</style>

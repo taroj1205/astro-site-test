@@ -1,24 +1,20 @@
+---
+import ZenIcon from "./icons/zen-icon.astro";
+---
+
 <nav>
-  <a
-    href="/"  
-  >
-    <img
-      alt="Zen Logo"
-      loading="lazy"
-      width="40"
-      height="40"
-      decoding="async"
-      data-nimg="1"
-      srcset="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg 1x, https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg 2x"
-      src="https://cdn.jsdelivr.net/gh/zen-browser/www@latest/public/logos/zen-tangerine.svg"
-    />
+  <a href="/">
+    <ZenIcon class="h-10 w-10 fill-primary" />
   </a>
   <ul>
     <li><a href="/">Browser</a></li>
     <li><a href="https://docs.zen-browser.app/">Resources</a></li>
     <li><a href="https://zen-browser.app/mods">Mods</a></li>
     <li>
-      <a href="https://www.patreon.com/zen_browser?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">Donate</a>
+      <a
+        href="https://www.patreon.com/zen_browser?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+        >Donate</a
+      >
     </li>
   </ul>
 </nav>
@@ -27,10 +23,10 @@
   @tailwind base;
   @layer base {
     nav {
-      @apply flex justify-center gap-10 text-primary font-semibold text-lg;
+      @apply flex justify-center gap-10 text-lg font-semibold text-secondary;
     }
     ul {
-      @apply hidden items-center justify-center gap-10 md:flex drop-shadow-md;
+      @apply hidden items-center justify-center gap-10 drop-shadow-md md:flex;
     }
   }
 </style>
