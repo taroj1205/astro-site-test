@@ -147,9 +147,9 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
       updateImages(modeOrder[index]);
     });
 
-    // indicator.addEventListener("mouseenter", () => {
-    //   updateImages(modeOrder[index]);
-    // });
+    indicator.addEventListener("mouseenter", () => {
+      updateImages(modeOrder[index]);
+    });
   });
 
   slider.addEventListener("input", () => {
@@ -239,11 +239,11 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     }
 
     .indicator {
-      @apply h-3 w-3 cursor-pointer rounded-full bg-primary opacity-70 transition-all duration-300 ease-in-out;
+      @apply h-3 w-3 cursor-pointer rounded-full bg-primary opacity-70 transition-all duration-300 ease-in-out hover:opacity-100;
     }
 
     .indicator.active {
-      @apply w-8 bg-opacity-100 xl:h-8 xl:w-3;
+      @apply w-8 bg-opacity-100 opacity-100 xl:h-8 xl:w-3;
     }
 
     #slider-container {
