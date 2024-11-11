@@ -48,7 +48,16 @@ module.exports = {
           '"Segoe UI Symbol"',
           '"Noto Color Emoji"',
         ],
-        dm: ["DM Sans"],
+        dm: [
+          "DM Sans",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
       },
       fontSize: {
         "scale-sm": "clamp(1rem, 2vw, 1.5rem)",
@@ -72,7 +81,7 @@ module.exports = {
       addBase({
         h2: {
           fontSize: `clamp(${theme("fontSize.6xl")}, 10vw, calc(${theme("fontSize.6xl")} + 1rem))`,
-          "@apply font-bold text-secondary leading-none": {},
+          "@apply font-bold text-secondary leading-none font-dm": {},
         },
         h3: {
           fontSize: `clamp(${theme("fontSize.4xl")}, 10vw, calc(${theme("fontSize.4xl")} + 1rem))`,
