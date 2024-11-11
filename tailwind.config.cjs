@@ -97,7 +97,7 @@ module.exports = {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply text-secondary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-white":
+          "@apply text-white py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-primary":
             {},
         },
         ".description": {
