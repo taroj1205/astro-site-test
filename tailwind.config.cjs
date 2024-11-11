@@ -1,5 +1,7 @@
 const plugin = require("tailwindcss/plugin");
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
@@ -38,26 +40,8 @@ module.exports = {
         "9xl": "11rem",
       },
       fontFamily: {
-        sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
-        dm: [
-          "DM Sans",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        dm: ["DM Sans", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         "scale-sm": "clamp(1rem, 2vw, 1.5rem)",
