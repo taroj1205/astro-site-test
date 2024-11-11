@@ -18,7 +18,7 @@ module.exports = {
       colors: {
         // primary: "hsl(258, 48%, 23%)",
         primary: "hsl(0 0% 20%)",
-        secondary: "hsl(22, 100%, 50%)",
+        secondary: "hsl(21 73% 50%)",
         muted: "hsl(0 0% 30%)",
       },
       spacing: {
@@ -96,7 +96,7 @@ module.exports = {
           "@apply text-center place-items-center": {},
         },
         ".btn-base": {
-          "@apply bg-black text-primary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 dark:bg-white":
+          "@apply text-primary font-semibold py-3 px-6 rounded-full w-fit flex items-center gap-2 text-lg drop-shadow-lg hover:drop-shadow-xl transition-all duration-300 bg-white":
             {},
         },
         ".description": {
