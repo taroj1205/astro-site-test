@@ -4,7 +4,6 @@ import compactImage from "@/assets/modes/compact.png";
 import collapsedImage from "@/assets/modes/collapsed.png";
 import standardImage from "@/assets/modes/standard.png";
 import splitImage from "@/assets/modes/split.png";
-import "./styles.css";
 
 type ModesOptions = "compact" | "collapsed" | "standard" | "split";
 
@@ -138,3 +137,69 @@ const modes: ModesOptions[] = ["compact", "collapsed", "standard", "split"];
     updateImages(modeOrder[parseInt(slider.value)]);
   });
 </script>
+
+<style>
+  @tailwind base;
+
+  @layer base {
+    section {
+      @apply grid w-full grid-cols-1 justify-center xl:grid-cols-[1fr_2fr] xl:gap-8;
+    }
+
+    section > div {
+      @apply flex flex-col gap-md rounded-lg p-6;
+    }
+
+    label {
+      @apply flex cursor-pointer items-center gap-3 rounded-md p-3 transition-colors hover:bg-gray-100;
+    }
+
+    label span {
+      @apply text-lg;
+    }
+
+    input[type="radio"] {
+      @apply h-4 w-4 text-secondary focus:ring-secondary;
+    }
+
+    #image-container {
+      @apply relative aspect-[1.55/1] overflow-clip rounded-lg;
+    }
+
+    #image-wrapper {
+      @apply absolute inset-0 flex flex-row transition-transform duration-300 ease-in-out xl:flex-col;
+    }
+
+    img {
+      @apply aspect-[1.55/1] bg-[#272626] object-cover;
+    }
+
+    #radio-group {
+      @apply hidden flex-col xl:flex;
+    }
+
+    #carousel-indicators {
+      @apply -xl:bottom-4 -xl:left-1/2 absolute flex -translate-x-1/2 transform gap-2 xl:top-1/2 xl:right-4 xl:-translate-y-1/2 xl:flex-col;
+    }
+
+    .indicator {
+      @apply h-3 w-3 cursor-pointer rounded-full bg-secondary bg-opacity-50 transition-all duration-300 ease-in-out;
+    }
+
+    .indicator.active {
+      @apply w-8 bg-opacity-100 xl:h-8 xl:w-3;
+    }
+
+    #slider-container {
+      @apply grid w-full max-w-xl grid-cols-[auto_1fr_auto] gap-md place-self-center xl:hidden;
+    }
+
+    #view-slider {
+      @apply w-full;
+    }
+
+    #slider-labels {
+      @apply text-xs;
+    }
+  }
+</style>
