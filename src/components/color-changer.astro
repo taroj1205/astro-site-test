@@ -20,19 +20,19 @@
   @tailwind base;
   @layer base {
     #themeColor {
-      @apply h-10 w-10 cursor-pointer rounded border-none bg-transparent outline-none;
+      @apply h-10 w-10 cursor-pointer rounded-full border-transparent bg-transparent drop-shadow-lg;
     }
 
     #themeColor::-moz-color-swatch {
-      @apply border-none;
+      @apply rounded-full border-transparent;
     }
 
     #themeColor::-webkit-color-swatch-wrapper {
-      @apply border-none p-0;
+      @apply rounded-full border-transparent p-0;
     }
 
     #themeColor::-webkit-color-swatch {
-      @apply border-none;
+      @apply rounded-full border-transparent;
     }
   }
 </style>
